@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--预设的属性-->
+    <attr name="rule_color" format="color|integer" />
+    <attr name="rule_height" format="dimension" />
+    <attr name="padding" format="dimension" />
+    <attr name="cursor_color" format="color|integer" />
+    <attr name="cursor_radius" format="dimension" />
+
+    <!--控件属性集合-->
+    <declare-styleable name="ProgressBar">
+        <attr name="rule_color" />
+        <attr name="rule_height" />
+        <attr name="padding" />
+        <attr name="cursor_color" />
+        <attr name="cursor_radius" />
+    </declare-styleable>
+
+</resources>

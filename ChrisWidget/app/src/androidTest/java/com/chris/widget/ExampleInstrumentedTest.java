@@ -1,4 +1,4 @@
-package com.chris.swiget;
+package com.chris.widget;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
