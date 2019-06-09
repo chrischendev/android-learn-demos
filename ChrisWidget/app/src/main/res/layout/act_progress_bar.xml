@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".sample.pages.ProgressBarActivity">
 
     <Button
         android:id="@+id/btn_start"
@@ -30,5 +30,6 @@
         app:padding="10dp"
         app:rule_color="#924daae8"
         app:rule_height="2dp" />
+
 
 </LinearLayout>

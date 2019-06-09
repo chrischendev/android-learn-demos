@@ -1,4 +1,4 @@
-package com.chris.widget;
+package com.chris.widget.sample.pages;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,20 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.chris.widget.R;
 import com.chris.widget.view.ProgressBar;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.btn_start)
-    Button btnStart;
-    @BindView(R.id.tv_value)
-    TextView tvValue;
-    @BindView(R.id.pb_test)
-    ProgressBar pbTest;
-
+public class ProgressBarActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button btnStart;
+    private TextView tvValue;
+    private ProgressBar pbTest;
     private int progress = 0;
     private Runnable mRunnable = new Runnable() {
         @Override
@@ -34,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (progress >= 100) {
-                removeCallbacks(mRunnable);
-            }
             pbTest.setProgress(progress++);
             tvValue.setText("" + pbTest.getProgress());
+            if (progress > 100) {
+                removeCallbacks(mRunnable);
+                progress = 0;
+                return;
+            }
             postDelayed(mRunnable, 100);
         }
     };
@@ -46,24 +41,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.act_progress_bar);
         initView();
     }
 
     private void initView() {
-        //tvValue.setText("开始");
+        setTitle("进度条测试");
+        btnStart = findViewById(R.id.btn_start);
+        tvValue = findViewById(R.id.tv_value);
+        pbTest = findViewById(R.id.pb_test);
+
+        btnStart.setOnClickListener(this);
     }
 
-    @OnClick(R.id.btn_start)
-    public void onClick(View view) {
-        switch (view.getId()) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.btn_start:
                 mRunnable.run();
                 break;
             default:
                 break;
         }
-
     }
 }
